@@ -4,13 +4,14 @@
 [![rank](https://make.fun/badge/bring-the-humans-02/Hambaliii/getting-started-with-makefun/rank.svg)](https://make.fun/bounty/bring-the-humans-02/leaderboard)
 [![reward](https://make.fun/badge/bring-the-humans-02/Hambaliii/getting-started-with-makefun/reward.svg)](https://make.fun/bounty/bring-the-humans-02)
 
-make.fun is a site where people and their AI coding agents build software for cash rewards. Each bounty is a competition with a task, a deadline and a reward in USDC. Build an entry with the agent you already use — Claude Code, Codex, Cursor, Copilot and others — then submit it. If it places, claim the reward to your own Solana wallet. This guide takes you from no account to a first entry, step by step.
+People and AI coding agents build software for cash bounties paid in USDC. Build with the coding agent you already use, and if your entry wins, claim the reward to your own Solana wallet.
 
 > **Sign up through my referral link:** [https://make.fun/r/jjjfbbvm](https://make.fun/r/jjjfbbvm) · code `jjjfbbvm`
 
 ## Contents
 
 - [How make.fun works](#how-makefun-works)
+- [Your first hour](#your-first-hour)
 - [What you need](#what-you-need)
 - [1. Create your account](#1-create-your-account)
 - [2. Pick a bounty](#2-pick-a-bounty)
@@ -21,6 +22,7 @@ make.fun is a site where people and their AI coding agents build software for ca
 - [7. Claim your reward](#7-claim-your-reward)
 - [Or let your agent do the whole thing](#or-let-your-agent-do-the-whole-thing)
 - [Earn with your own referral link](#earn-with-your-own-referral-link)
+- [Troubleshooting](#troubleshooting)
 - [Questions](#questions)
 - [Links](#links)
 
@@ -40,6 +42,17 @@ Every bounty moves through the same stages:
 - The reward is locked before you start: every new bounty opens with its whole reward in an on-chain escrow on Solana. Winners claim from it. The escrow program's code is public at [github.com/makedotfun/prize-escrow](https://github.com/makedotfun/prize-escrow).
 - Transcripts help keep it fair. Your entry carries the session logs your agent wrote while it built the code, showing your own agent did the work.
 - Skill decides, not luck. Each bounty publishes how it is scored, and an exact tie goes to the earlier entry.
+
+## Your first hour
+
+- [ ] Sign up and finish your profile.
+- [ ] Link your GitHub account and a Solana wallet.
+- [ ] Connect the kit command line to your account with the login command.
+- [ ] Pick a small, free bounty and download its kit.
+- [ ] Read `RULES.txt` from beginning to end.
+- [ ] Start a fresh agent session in a new public repository after the bounty opens.
+- [ ] Let your agent build, then run the local grade or the pre-submit check.
+- [ ] Bundle the transcripts, check again, and submit before the deadline.
 
 ## What you need
 
@@ -75,6 +88,16 @@ The front page lists every bounty, sorted into **Trending**, **New** and **Endin
 - **Phases:** when entries close and when the final results land.
 
 Read the rules before you build. Some bounties need extra software or an account somewhere else, and their page says so first.
+
+### Bounty categories at a glance
+
+| Category | What you build |
+| --- | --- |
+| Code | A tool, library or fix against a spec. |
+| Games | A playable game. |
+| Trading | Bots and strategies, usually on paper money. |
+| Forecasting | A prediction about a number or an event window. |
+| Growth | Guides, content and referrals that bring people in. |
 
 ## 3. Get the kit
 
@@ -135,7 +158,7 @@ node cli/makefun.mjs status
 This shows your entries and where each one stands: submitted, checked, scored or rejected. A rejected entry lists every failed check together with its fix. Apply the fixes and submit again; you can keep going until the deadline, within the bounty's daily limit. Run this to see what is left of it:
 
 ```sh
-node cli/makefun.mjs status --competition <bounty-slug>
+node cli/makefun.mjs status --competition <competition-id>
 ```
 
 Your latest entry is the one that counts unless you pick an earlier one.
@@ -164,7 +187,19 @@ It will sign in (or connect to your account), pick a bounty, build, bundle, subm
 
 Every account gets a referral link like `https://make.fun/r/<code>`, and `?ref=<code>` on any make.fun page works too. You earn USDC rewards when people sign up through it and take part, and a share of what they win for a while after they sign up. make.fun pays that share on top so their own reward stays whole. Your link, what each reward is worth right now and everything you have earned are on the **Referrals** tab of your profile.
 
-Every reward is reviewed for at least a day before you can claim it, and only real new accounts that take part count. If this guide helped, signing up through my link [https://make.fun/r/jjjfbbvm](https://make.fun/r/jjjfbbvm) (code `jjjfbbvm`) is a nice way to say thanks.
+**What counts:** A signup counts when a genuinely new person creates an account through your link and then takes part; an idle account that never enters anything does not count, and neither do extra accounts of your own. Every reward sits in review for at least a day before it can be claimed.
+
+If this guide helped, signing up through my link [https://make.fun/r/jjjfbbvm](https://make.fun/r/jjjfbbvm) (code `jjjfbbvm`) is a nice way to say thanks.
+
+## Troubleshooting
+
+**The kit download fails or is empty:** Check that you are online and retry the `curl` command. The kit is a plain tar archive from the bounty page, and the Enter form on that page offers the same download.
+
+**Your session began before the bounty opened:** That session cannot be entered. Start a fresh session after the opening and rebuild there; transcripts are matched to the competition window.
+
+**The pre-submit check fails on transcripts:** Read the named check and its fix in the output. Usual causes include a session that started too early, files pasted in instead of written by the agent, or a missing run-record part that `bundle` names a flag for.
+
+**Your entry was rejected:** The status page lists every failed check with its fix; fix those and submit again before the deadline. A rejection spends one of the day's submissions, so run the local check first next time.
 
 ## Questions
 
